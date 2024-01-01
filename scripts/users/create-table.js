@@ -23,7 +23,7 @@ export async function CreateUsersTable() {
     await db.query('ROLLBACK');
     console.error(err);
   } finally {
-    db.release();
+    db.release(true);
   }
 }
 

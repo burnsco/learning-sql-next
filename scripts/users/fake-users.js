@@ -15,11 +15,14 @@ export function createRandomUser() {
 }
 
 // Faker User Generation Function
-export const USER = faker.helpers.multiple(createRandomUser, {
+export const singleUser = faker.helpers.multiple(createRandomUser, {
   count: 1,
 });
+export const tenUsers = faker.helpers.multiple(createRandomUser, {
+  count: 10,
+});
 
-export let testUser = USER.flatMap((u) => {
+export let testUser = singleUser.flatMap((u) => {
   return [
     u.id,
     u.email,
