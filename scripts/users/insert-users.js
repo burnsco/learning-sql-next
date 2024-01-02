@@ -39,6 +39,7 @@ export async function InsertUsers() {
 
     const res = await db.query(text2);
     await db.query('COMMIT');
+    console.log('Inserted Data:', res);
   } catch (err) {
     await db.query('ROLLBACK');
     console.error(err);

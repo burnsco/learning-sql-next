@@ -4,10 +4,13 @@
   "private": true,
   "scripts": {
     "build": "next build",
+    "cc": "bun run scripts/cities/create-cities.js",
     "dev": "next dev",
     "lint": "next lint",
     "prettier": "prettier --write --ignore-unknown .",
     "prettier:check": "prettier --check --ignore-unknown .",
+    "sc": "bun run scripts/cities/insert-cities.js",
+    "scrape": "bun run app/lib/data.ts",
     "seed": "bun -r dotenv/config ./scripts/seed.js",
     "start": "next start"
   },

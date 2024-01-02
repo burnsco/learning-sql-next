@@ -16,7 +16,7 @@ export async function CreateCitiesTable() {
                 area INTEGER NOT NULL
               );
       `;
-    const res = await db.query(CREATE_CITIES_TABLE);
+    await db.query(CREATE_CITIES_TABLE);
     await db.query('COMMIT');
   } catch (err) {
     await db.query('ROLLBACK');
