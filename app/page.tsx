@@ -1,4 +1,9 @@
-import { fetchCities } from '@/app/lib/fetch-cities';
+import {
+  fetchAreaSum,
+  fetchCities,
+  fetchDensitySum,
+  fetchPopulationSum,
+} from '@/app/lib/fetch-cities';
 
 type CityType = {
   id: string;
@@ -10,7 +15,12 @@ type CityType = {
 export default async function Home() {
   const data: any = await fetchCities();
 
-  console.log(data);
+  const popsumdata: any = await fetchPopulationSum();
+  const areasumdata: any = await fetchAreaSum();
+  const densumdata: any = await fetchDensitySum();
+  const popsum = popsumdata.map((a: any) => a.sum);
+  const areasum = areasumdata.map((a: any) => a.sum);
+  const denssum = densumdata.map((a: any) => a.sum);
 
   return (
     <main className="flex min-h-screen flex-col  p-24">
@@ -112,6 +122,17 @@ export default async function Home() {
               );
             })}
           </tbody>
+          <tfoot>
+            <tr className="font-semibold text-gray-900 dark:text-white">
+              <th scope="row" className="px-6 py-3 text-base">
+                Totals
+              </th>
+              <td className="px-6 py-3"></td>
+              <td className="px-6 py-3">{popsum}</td>
+              <td className="px-6 py-3">{areasum}</td>
+              <td className="px-6 py-3">{denssum}</td>
+            </tr>
+          </tfoot>
         </table>
       </div>
     </main>
