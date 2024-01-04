@@ -1,3 +1,5 @@
+'use client';
+
 type TableDataType = {
   tableData: {
     country: string;
@@ -12,14 +14,14 @@ export const TableBody = ({ tableData }: TableDataType) => {
     <tbody>
       {tableData.map((city: any) => (
         <tr
-          key={city.name}
+          key={city.id}
           className="border-b bg-white dark:border-gray-700 dark:bg-gray-800"
         >
           <th
             scope="row"
             className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
           >
-            {city.name}
+            {city.name} <button className="border-2">Delete</button>
           </th>
           <td className="px-6 py-4">{city.country}</td>
           <td className="px-6 py-4">{city.population.toLocaleString()}</td>

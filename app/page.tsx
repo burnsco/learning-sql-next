@@ -1,22 +1,17 @@
 import {
+  deleteCity,
   fetchAreaSum,
   fetchCities,
+  fetchCities2,
   fetchDensitySum,
   fetchFilteredCities,
   fetchPopulationSum,
 } from '@/app/lib/fetch-cities';
 import { CitiesTable } from '@/app/ui/cities/table';
-import { useRouter } from 'next/router';
-
-type CityType = {
-  id: string;
-  name: string;
-  population: number;
-  area: number;
-}[];
 
 export default async function Home() {
   const cities: any = await fetchCities();
+  // either useState or some pathparams for searching
   const filtered: any = await fetchFilteredCities('t');
 
   const popsumdata: any = await fetchPopulationSum();
@@ -25,15 +20,17 @@ export default async function Home() {
   const popsum = popsumdata.map((a: any) => a.sum);
   const areasum = areasumdata.map((a: any) => a.sum);
   const denssum = densumdata.map((a: any) => a.sum);
+  const asdf = await deleteCity('Tokyo');
 
-  console.log(filtered);
+  const test: any = await fetchCities2();
+  console.log(test);
 
   return (
     <main className="flex min-h-screen flex-col  p-24">
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <CitiesTable
           captionTitle="Largest Cities in the World"
-          cities={cities}
+          cities={test}
           populationTotal={popsum}
           areaTotal={areasum}
           densityTotal={denssum}

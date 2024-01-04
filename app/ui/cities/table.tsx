@@ -7,6 +7,7 @@ import TableSearch from '@/app/ui/cities/tsearch';
 
 type CitiesDataType = {
   cities: {
+    id: string;
     name: string;
     country: string;
     population: number;

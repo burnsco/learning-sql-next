@@ -1,4 +1,17 @@
-import * as db from '../../scripts/db.js';
+'use server';
+
+import { revalidatePath } from 'next/cache';
+import { cache } from 'react';
+import { query } from '../../scripts/db.js';
+
+export const fetchCities2 = cache(async () => {
+  const minMax = `
+          SELECT id, name, country, population, area, population / area AS density
+          FROM cities
+          ORDER BY population DESC`;
+  const item = await query(minMax);
+  return item.rows;
+});
 
 export async function fetchCities() {
   try {
@@ -19,8 +32,9 @@ export async function fetchCities() {
           LIMIT 5
           `;
     const minMax = `
-          SELECT name, country, population, area, population / area AS density
+          SELECT id, name, country, population, area, population / area AS density
           FROM cities
+          ORDER BY population DESC
           `;
 
     const chinaOrderByArea = `
@@ -28,7 +42,7 @@ export async function fetchCities() {
           FROM cities
           WHERE country IN ('China') ORDER BY area ASC`;
 
-    const { rows } = await db.query(minMax);
+    const { rows } = await query(minMax);
     return rows;
   } catch (error) {
     console.error('Database Error:', error);
@@ -42,8 +56,37 @@ export async function fetchCitiesCount() {
                   SELECT COUNT(DISTINCT country)
                   FROM cities
                 `;
-    const { rows } = await db.query(allQuery);
+    const { rows } = await query(allQuery);
     return rows;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch cities data.');
+  }
+}
+
+export async function deleteCity(name: string) {
+  try {
+    const allQuery = `
+                  DELETE FROM cities
+                  WHERE name = $1
+                `;
+    const test = await query(allQuery, [`${name}`]);
+    revalidatePath('/');
+    return test;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch cities data.');
+  }
+}
+
+export async function deleteCities() {
+  try {
+    const allQuery = `
+                  DELETE FROM cities
+                  WHERE country = 'China'
+                `;
+    const test = await query(allQuery);
+    return test;
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch cities data.');
@@ -56,7 +99,7 @@ export async function fetchPopulationSum() {
                   SELECT SUM(population)
                   FROM cities
                 `;
-    const { rows } = await db.query(allQuery);
+    const { rows } = await query(allQuery);
     return rows;
   } catch (error) {
     console.error('Database Error:', error);
@@ -70,7 +113,7 @@ export async function fetchAreaSum() {
                   SELECT SUM(area)
                   FROM cities
                 `;
-    const { rows } = await db.query(allQuery);
+    const { rows } = await query(allQuery);
     return rows;
   } catch (error) {
     console.error('Database Error:', error);
@@ -85,7 +128,7 @@ export async function fetchFilteredCities(searchQuery: string) {
                   FROM cities
                   WHERE name LIKE $1
     `;
-    const { rows } = await db.query(nameOrCountry, [`%${searchQuery}%`]);
+    const { rows } = await query(nameOrCountry, [`%${searchQuery}%`]);
     return rows;
   } catch (error) {
     console.error('Database Error:', error);
@@ -100,7 +143,7 @@ export async function fetchUpdateMexicoCity() {
                   SET population = 21804000
                   WHERE name = 'Mexico City'
                 `;
-    const { rows } = await db.query(allQuery);
+    const { rows } = await query(allQuery);
     return rows;
   } catch (error) {
     console.error('Database Error:', error);
@@ -114,7 +157,7 @@ export async function fetchDensitySum() {
                   SELECT SUM(population / area)
                   FROM cities
                 `;
-    const { rows } = await db.query(allQuery);
+    const { rows } = await query(allQuery);
     return rows;
   } catch (error) {
     console.error('Database Error:', error);

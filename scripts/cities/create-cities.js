@@ -1,10 +1,10 @@
-import { pool } from '../db.js';
+import { getClient } from '../../scripts/db.js';
 
 // So for the course I'm taking I scraped wikipedia most populated cities
 // with the data -> city, country, population and area
 //
 export async function CreateCitiesTable() {
-  const db = await pool.connect();
+  const db = await getClient();
 
   try {
     await db.query('BEGIN');
@@ -22,7 +22,7 @@ export async function CreateCitiesTable() {
     await db.query('ROLLBACK');
     console.error(err);
   } finally {
-    db.release(true);
+    db.release();
   }
 }
 

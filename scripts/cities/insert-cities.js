@@ -1,9 +1,9 @@
 import format from 'pg-format';
 import { scrape } from '../../app/lib/data.ts';
-import { pool } from '../db.js';
+import { getClient } from '../../scripts/db.js';
 
 export async function InsertCities() {
-  const db = await pool.connect();
+  const db = await getClient();
   const data = await scrape();
 
   console.log(data);
