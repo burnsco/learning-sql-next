@@ -78,6 +78,36 @@ export async function fetchAreaSum() {
   }
 }
 
+export async function fetchFilteredCities(searchQuery: string) {
+  try {
+    const nameOrCountry = `
+                  SELECT name, country, population, area, population / area AS density
+                  FROM cities
+                  WHERE name LIKE $1
+    `;
+    const { rows } = await db.query(nameOrCountry, [`%${searchQuery}%`]);
+    return rows;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch cities data.');
+  }
+}
+
+export async function fetchUpdateMexicoCity() {
+  try {
+    const allQuery = `
+                  UPDATE cities
+                  SET population = 21804000
+                  WHERE name = 'Mexico City'
+                `;
+    const { rows } = await db.query(allQuery);
+    return rows;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch cities data.');
+  }
+}
+
 export async function fetchDensitySum() {
   try {
     const allQuery = `

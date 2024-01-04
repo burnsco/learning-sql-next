@@ -2,9 +2,11 @@ import {
   fetchAreaSum,
   fetchCities,
   fetchDensitySum,
+  fetchFilteredCities,
   fetchPopulationSum,
 } from '@/app/lib/fetch-cities';
 import { CitiesTable } from '@/app/ui/cities/table';
+import { useRouter } from 'next/router';
 
 type CityType = {
   id: string;
@@ -15,6 +17,7 @@ type CityType = {
 
 export default async function Home() {
   const cities: any = await fetchCities();
+  const filtered: any = await fetchFilteredCities('t');
 
   const popsumdata: any = await fetchPopulationSum();
   const areasumdata: any = await fetchAreaSum();
@@ -22,6 +25,8 @@ export default async function Home() {
   const popsum = popsumdata.map((a: any) => a.sum);
   const areasum = areasumdata.map((a: any) => a.sum);
   const denssum = densumdata.map((a: any) => a.sum);
+
+  console.log(filtered);
 
   return (
     <main className="flex min-h-screen flex-col  p-24">

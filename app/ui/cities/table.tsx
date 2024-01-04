@@ -3,6 +3,7 @@
 import { TableBody } from '@/app/ui/cities/tbody';
 import { TableFooter } from '@/app/ui/cities/tfoot';
 import { TableHead } from '@/app/ui/cities/thead';
+import TableSearch from '@/app/ui/cities/tsearch';
 
 type CitiesDataType = {
   cities: {
@@ -23,15 +24,21 @@ export const CitiesTable = (data: CitiesDataType) => {
     data;
 
   return (
-    <table className="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400">
-      <caption className="p-2 text-2xl text-orange-500">{captionTitle}</caption>
-      <TableHead />
-      <TableBody tableData={cities} />
-      <TableFooter
-        populationTotal={populationTotal}
-        areaTotal={areaTotal}
-        densityTotal={densityTotal}
-      />
-    </table>
+    <>
+      <TableSearch placeholder="hey" />
+      <table className="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400">
+        <caption className="p-2 text-2xl text-orange-500">
+          {captionTitle}
+        </caption>
+
+        <TableHead />
+        <TableBody tableData={cities} />
+        <TableFooter
+          populationTotal={populationTotal}
+          areaTotal={areaTotal}
+          densityTotal={densityTotal}
+        />
+      </table>
+    </>
   );
 };
