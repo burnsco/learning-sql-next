@@ -18,11 +18,18 @@ type CitiesDataType = {
   areaTotal: number;
   densityTotal: number;
   captionTitle: string;
+  citiesCount: string;
 };
 
 export const CitiesTable = (data: CitiesDataType) => {
-  const { cities, populationTotal, areaTotal, densityTotal, captionTitle } =
-    data;
+  const {
+    cities,
+    citiesCount,
+    populationTotal,
+    areaTotal,
+    densityTotal,
+    captionTitle,
+  } = data;
 
   return (
     <>
@@ -38,6 +45,7 @@ export const CitiesTable = (data: CitiesDataType) => {
           populationTotal={populationTotal}
           areaTotal={areaTotal}
           densityTotal={densityTotal}
+          citiesCount={citiesCount}
         />
       </table>
     </>

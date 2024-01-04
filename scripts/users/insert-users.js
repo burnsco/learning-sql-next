@@ -1,6 +1,6 @@
 import format from 'pg-format';
 import { pool } from '../db.js';
-import { tenUsers } from './fake-users.js';
+import { tenUsers } from './faker-schema.js';
 
 export async function InsertUsers() {
   const db = await pool.connect();

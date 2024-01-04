@@ -2,7 +2,7 @@ import {
   deleteCity,
   fetchAreaSum,
   fetchCities,
-  fetchCities2,
+  fetchCitiesCount,
   fetchDensitySum,
   fetchFilteredCities,
   fetchPopulationSum,
@@ -20,18 +20,20 @@ export default async function Home() {
   const popsum = popsumdata.map((a: any) => a.sum);
   const areasum = areasumdata.map((a: any) => a.sum);
   const denssum = densumdata.map((a: any) => a.sum);
-  const test: any = await fetchCities2();
-  const asdf = await deleteCity('Seoul');
+  const { count }: any = await fetchCitiesCount();
+  console.log(count);
+  const asdf = await deleteCity('Dalian');
 
   return (
     <main className="flex min-h-screen flex-col  p-24">
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <CitiesTable
           captionTitle="Largest Cities in the World"
-          cities={test}
+          cities={cities}
           populationTotal={popsum}
           areaTotal={areasum}
           densityTotal={denssum}
+          citiesCount={count}
         />
       </div>
     </main>
