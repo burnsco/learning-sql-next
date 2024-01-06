@@ -7,8 +7,8 @@ export default async function Home() {
         <div>
           <div className="relative mb-3 flex w-80 flex-col items-center border border-gray-300 bg-white p-10">
             <Image
-              width="100"
-              height="200"
+              width="200"
+              height="400"
               alt="Insta Logo"
               src="/images/logo-instagram.svg"
             />
@@ -16,7 +16,7 @@ export default async function Home() {
               <input
                 autoFocus
                 className="mb-2 w-full rounded border border-gray-300 bg-gray-100 px-2 py-2 text-xs focus:border-gray-400 focus:outline-none active:outline-none"
-                placeholder="Phone number, username, or email"
+                placeholder="Username or Email"
                 type="text"
               />
               <input
