@@ -5,10 +5,10 @@ export default async function Home() {
     <main className="flex h-screen flex-col items-center justify-center bg-gray-50">
       <div className="flex-column flex">
         <div>
-          <div className="relative mb-3 flex w-80 flex-col items-center border border-gray-300 bg-white pb-60 pt-10">
+          <div className="relative mb-3 flex w-80 flex-col items-center border border-gray-300 bg-white p-10">
             <Image
-              width="300"
-              height="900"
+              width="100"
+              height="200"
               alt="Insta Logo"
               src="/images/logo-instagram.svg"
             />
@@ -21,6 +21,7 @@ export default async function Home() {
               />
               <input
                 autoFocus
+                autoComplete="off"
                 className="mb-4 w-full rounded border border-gray-300 bg-gray-100 px-2 py-2 text-xs focus:border-gray-400 focus:outline-none active:outline-none"
                 placeholder="Password"
                 type="password"
@@ -34,7 +35,7 @@ export default async function Home() {
             </form>
           </div>
           <div className="w-80 border border-gray-300 bg-white py-4 text-center">
-            <span className="text-sm">No Account?</span>
+            <span className="text-sm text-slate-800">No Account?</span>
             <a className="ml-1 cursor-pointer text-sm font-semibold text-blue-500">
               Sign up
             </a>
