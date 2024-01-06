@@ -46,6 +46,33 @@ const NavBar = () => {
               Cities
             </Link>
           </li>
+          <li>
+            <Link
+              href="/feed/trees"
+              className="block px-3 py-2 text-slate-800 "
+              aria-current="page"
+            >
+              Trees
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/feed/hordes"
+              className="block px-3 py-2 text-slate-800 "
+              aria-current="page"
+            >
+              Hordes
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/feed/chat"
+              className="block px-3 py-2 text-slate-800 "
+              aria-current="page"
+            >
+              Chat
+            </Link>
+          </li>
         </ul>
       </div>
     </nav>
