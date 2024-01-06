@@ -1,7 +1,13 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
+import { Server } from 'socket.io';
 import { query } from '../../scripts/db.js';
+
+export async function SocketTest() {
+  const io = new Server();
+  io.listen(3000);
+}
 
 export async function fetchCities() {
   try {
