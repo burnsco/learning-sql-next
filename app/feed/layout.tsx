@@ -1,14 +1,41 @@
-import type { Metadata } from 'next';
+'use client';
+
+import { cn } from '@/app/lib/utils';
 import { Permanent_Marker } from 'next/font/google';
 import Link from 'next/link';
-
-export const metadata: Metadata = {
-  title: 'Home',
-};
+import { usePathname } from 'next/navigation';
 
 const pacifico = Permanent_Marker({ subsets: ['latin'], weight: '400' });
 
+const routes = [
+  {
+    label: 'Home',
+    href: '/feed',
+  },
+  {
+    label: 'Profile',
+    href: '/feed/profile',
+  },
+  {
+    label: 'Cities',
+    href: '/feed/cities',
+  },
+  {
+    label: 'Trees',
+    href: '/feed/trees',
+  },
+  {
+    label: 'Hordes',
+    href: '/feed/hordes',
+  },
+  {
+    label: 'Chat',
+    href: '/feed/chat',
+  },
+];
+
 const NavBar = () => {
+  const pathname = usePathname();
   return (
     <nav className="fixed start-0 top-0 z-20 h-16 w-full border-b border-gray-200 bg-white">
       <div className="container mx-auto flex max-w-screen-xl flex-wrap items-center p-2">
@@ -18,62 +45,22 @@ const NavBar = () => {
           Social
         </h3>
 
-        <ul className="ml-72 flex border-2">
-          <li>
-            <Link
-              href="/feed"
-              className="block px-3 py-2 text-slate-800 "
-              aria-current="page"
-            >
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/feed/profile"
-              className="block px-3 py-2 text-slate-800 "
-              aria-current="page"
-            >
-              Profile
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/feed/cities"
-              className="block px-3 py-2 text-slate-800 "
-              aria-current="page"
-            >
-              Cities
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/feed/trees"
-              className="block px-3 py-2 text-slate-800 "
-              aria-current="page"
-            >
-              Trees
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/feed/hordes"
-              className="block px-3 py-2 text-slate-800 "
-              aria-current="page"
-            >
-              Hordes
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/feed/chat"
-              className="block px-3 py-2 text-slate-800 "
-              aria-current="page"
-            >
-              Chat
-            </Link>
-          </li>
-        </ul>
+        <menu className="ml-72 flex border-2">
+          {routes.map((route) => (
+            <li key={route.label}>
+              <Link
+                href={route.href}
+                className={cn(
+                  'block px-3 py-2 text-slate-800',
+                  route.href === pathname && 'bg-slate-200/80',
+                )}
+                aria-current="page"
+              >
+                {route.label}
+              </Link>
+            </li>
+          ))}
+        </menu>
       </div>
     </nav>
   );

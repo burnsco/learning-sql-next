@@ -2,8 +2,7 @@ export default async function HomeFeedPage() {
   return (
     <section
       id="home-feed"
-      className="mt-16 flex min-w-full flex-row  border-2 border-red-500
-      bg-gray-50 "
+      className="mt-16 flex min-w-full flex-row border-2 border-red-500  bg-gray-50 p-2"
     >
       <article className="flex w-1/5 flex-col items-center border border-gray-300 bg-white p-2">
         <h1 className="text-slate-800">Feed Page (Left)</h1>
