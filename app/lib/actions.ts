@@ -1,12 +1,17 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, unstable_noStore } from 'next/cache';
 import { Server } from 'socket.io';
 import { query } from '../../scripts/db.js';
 
 export async function SocketTest() {
+  unstable_noStore();
   const io = new Server();
-  io.listen(3000);
+  io.listen(4444);
+
+  io.on('connection', (socket) => {
+    console.log('a user connected');
+  });
 }
 
 export async function fetchCities() {

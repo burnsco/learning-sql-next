@@ -1,4 +1,7 @@
+import { SocketTest } from '@/app/lib/actions';
+
 export default async function HomeFeedPage() {
+  SocketTest();
   return (
     <section id="home-feed" className="flex min-w-full flex-row ">
       <article className="flex w-1/5 flex-col items-center border border-gray-300 bg-white p-2">
