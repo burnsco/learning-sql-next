@@ -1,13 +1,16 @@
 export default async function TreesPage() {
   return (
-    <main className="flex h-screen flex-col items-center justify-center bg-gray-50">
+    <section
+      className="
+      mt-16 flex min-w-full flex-col items-center justify-center border-2 border-red-500
+      bg-gray-50
+      "
+    >
       <div className="flex-column flex">
-        <div>
-          <div className="relative mb-3 flex w-80 flex-col items-center border border-gray-300 bg-white p-10">
-            <h1 className="text-slate-800">Trees Page</h1>
-          </div>
+        <div className="relative mb-3 flex w-80 flex-col items-center border border-gray-300 bg-white p-10">
+          <h1 className="text-slate-800">Trees Page - WHAT!?</h1>
         </div>
       </div>
-    </main>
+    </section>
   );
 }

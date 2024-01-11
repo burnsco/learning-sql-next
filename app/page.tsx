@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default async function Home() {
   return (
-    <main className="flex h-screen flex-col items-center justify-center bg-gray-50">
+    <main className="flex h-full flex-col items-center justify-center bg-gray-50">
       <div className="flex-column flex">
         <div>
           <div className="relative mb-3 flex w-80 flex-col items-center border border-gray-300 bg-white p-10">
