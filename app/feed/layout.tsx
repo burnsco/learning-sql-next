@@ -1,6 +1,6 @@
 'use client';
 
-import { cn } from '@/app/lib/utils';
+import { cn } from '@/lib/utils';
 import { Permanent_Marker } from 'next/font/google';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';

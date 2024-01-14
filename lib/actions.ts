@@ -1,7 +1,7 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import { query } from '../../scripts/db.js';
+import { query } from '../scripts/db.js';
 
 export async function fetchCities() {
   try {

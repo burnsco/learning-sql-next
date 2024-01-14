@@ -1,3 +1,4 @@
+import { CitiesTable } from '@/app/ui/cities/table';
 import {
   deleteCity,
   fetchAreaSum,
@@ -6,8 +7,7 @@ import {
   fetchDensitySum,
   fetchFilteredCities,
   fetchPopulationSum,
-} from '@/app/lib/actions';
-import { CitiesTable } from '@/app/ui/cities/table';
+} from '@/lib/actions';
 
 export default async function Home() {
   const cities: any = await fetchCities();
@@ -21,7 +21,6 @@ export default async function Home() {
   const areasum = areasumdata.map((a: any) => a.sum);
   const denssum = densumdata.map((a: any) => a.sum);
   const { count }: any = await fetchCitiesCount();
-  console.log(count);
   const asdf = await deleteCity('Dalian');
 
   return (
