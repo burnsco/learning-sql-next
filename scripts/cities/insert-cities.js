@@ -1,5 +1,5 @@
 import format from 'pg-format';
-import { scrape } from '../../app/lib/data.ts';
+import { scrape } from '../../lib/data.ts';
 import { getClient } from '../../scripts/db.js';
 
 export async function InsertCities() {

@@ -8,6 +8,11 @@ export async function CreateCitiesTable() {
 
   try {
     await db.query('BEGIN');
+    // const CREATE_UUID_EXTENSION = `
+    //         CREATE EXTENSION IF NOT EXISTS
+    //         "uuid-ossp";
+    //         `;
+
     const CREATE_CITIES_TABLE = `CREATE TABLE IF NOT EXISTS cities (
                 id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
                 name VARCHAR(50) NOT NULL UNIQUE,
@@ -16,6 +21,7 @@ export async function CreateCitiesTable() {
                 area INTEGER NOT NULL
               );
       `;
+    // await db.query(CREATE_UUID_EXTENSION);
     await db.query(CREATE_CITIES_TABLE);
     await db.query('COMMIT');
   } catch (err) {

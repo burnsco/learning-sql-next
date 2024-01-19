@@ -38,14 +38,14 @@ const NavBar = () => {
   const pathname = usePathname();
   return (
     <nav className="fixed start-0 top-0 z-20 h-16 w-full border-b border-gray-200 bg-white">
-      <div className="container mx-auto flex max-w-screen-xl flex-wrap items-center p-2">
+      <div className="flex max-w-screen-xl items-center p-2">
         <h3
           className={`${pacifico.className} text-4xl text-slate-700 antialiased`}
         >
           Social
         </h3>
 
-        <menu className="ml-72 flex border-2">
+        <menu className="mx-auto ml-5 flex border-2 border-blue-300">
           {routes.map((route) => (
             <li key={route.label}>
               <Link
