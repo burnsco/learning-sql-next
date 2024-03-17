@@ -5,7 +5,7 @@ export async function CreateUsersTable() {
 
   try {
     await db.query('BEGIN');
-    const CREATE_USER_TABLE = `CREATE TABLE IF NOT EXISTS users (
+    const CREATE_USER_TABLE = `CREATE TABLE IF NOT EXISTS users (e
                 id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
                 email TEXT NOT NULL UNIQUE,
                 username VARCHAR(50) NOT NULL UNIQUE,
