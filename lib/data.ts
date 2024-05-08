@@ -5,7 +5,7 @@ const tbody_cities_container =
 
 export const scrape = async () => {
   try {
-    const browser = await puppeteer.launch({ headless: 'new' });
+    const browser = await puppeteer.launch({ headless: 'shell' });
 
     const page = await browser.newPage();
     await page.goto('https://en.wikipedia.org/wiki/List_of_largest_cities');
