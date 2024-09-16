@@ -4,16 +4,16 @@ import { getClient } from '../../scripts/db.js';
 // with the data -> city, country, population and area
 //
 export async function CreateCitiesTable() {
-  const db = await getClient();
+	const db = await getClient();
 
-  try {
-    await db.query('BEGIN');
-    const CREATE_UUID_EXTENSION = `
+	try {
+		await db.query('BEGIN');
+		const CREATE_UUID_EXTENSION = `
             CREATE EXTENSION IF NOT EXISTS
             "uuid-ossp";
             `;
 
-    const CREATE_CITIES_TABLE = `CREATE TABLE IF NOT EXISTS cities (
+		const CREATE_CITIES_TABLE = `CREATE TABLE IF NOT EXISTS cities (
                 id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
                 name VARCHAR(50) NOT NULL UNIQUE,
                 country VARCHAR(50) NOT NULL,
@@ -21,15 +21,17 @@ export async function CreateCitiesTable() {
                 area INTEGER NOT NULL
               );
       `;
-    // await db.query(CREATE_UUID_EXTENSION);
-    await db.query(CREATE_CITIES_TABLE);
-    await db.query('COMMIT');
-  } catch (err) {
-    await db.query('ROLLBACK');
-    console.error(err);
-  } finally {
-    db.release();
-  }
+		// await db.query(CREATE_UUID_EXTENSION);
+		await db.query(CREATE_CITIES_TABLE);
+		await db.query('COMMIT');
+	} catch (err) {
+		await db.query('ROLLBACK');
+		console.error(err);
+	} finally {
+		db.release();
+	}
 }
 
-CreateCitiesTable();
+export async function GET() {
+	await CreateCitiesTable()
+}
