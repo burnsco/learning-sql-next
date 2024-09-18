@@ -1,4 +1,4 @@
-import { getClient } from '../../scripts/db.js';
+import { getClient } from '../db.js';
 
 // So for the course I'm taking I scraped wikipedia most populated cities
 // with the data -> city, country, population and area

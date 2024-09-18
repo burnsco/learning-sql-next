@@ -1,5 +1,5 @@
 import format from 'pg-format';
-import { getClient } from '../../scripts/db.js';
+import { getClient } from '../db.js';
 import { populatedCities as data } from './pop-cities.js';
 
 export async function InsertCities() {

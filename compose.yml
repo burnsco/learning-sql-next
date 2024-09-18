@@ -1,6 +1,6 @@
 services:
   next-app:
-    container_name: next-app
+    container_name: 'next-learning-app'
     build:
       context: .
       dockerfile: dev.Dockerfile
@@ -15,6 +15,7 @@ services:
         condition: service_healthy
 
   postgres:
+    container_name: 'postgres'
     image: postgres:latest
     restart: always
     user: postgres
@@ -32,6 +33,7 @@ services:
       - db-data:/var/lib/postgresql/data
 
   pgadmin:
+    container_name: 'pgadmin'
     image: dpage/pgadmin4:latest
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@pgadmin.com

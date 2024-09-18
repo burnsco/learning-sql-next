@@ -1,16 +1,35 @@
-export default async function CitiesPage() {
+import { CitiesTable } from '@/app/ui/cities/table';
+import {
+  fetchAreaSum,
+  fetchCities,
+  fetchCitiesCount,
+  fetchDensitySum,
+  fetchPopulationSum
+} from '@/lib/actions';
+
+export default async function Home() {
+  const cities: any = await fetchCities();
+  const popsumdata: any = await fetchPopulationSum();
+  const areasumdata: any = await fetchAreaSum();
+  const densumdata: any = await fetchDensitySum();
+  const popsum = popsumdata.map((a: any) => a.sum);
+  const areasum = areasumdata.map((a: any) => a.sum);
+  const denssum = densumdata.map((a: any) => a.sum);
+  const { count }: any = await fetchCitiesCount();
+
+
   return (
-    <section
-      className="
-      mt-16 flex min-w-full flex-col items-center justify-center border-2 border-red-500
-      bg-gray-50
-      "
-    >
-      <div className="flex-column flex">
-        <div className="relative mb-3 flex w-80 flex-col items-center border border-gray-300 bg-white p-10">
-          <h1 className="text-slate-800">Cities Page - WHAT!?</h1>
-        </div>
+    <main className="flex min-h-screen flex-col p-20">
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <CitiesTable
+          captionTitle="Largest Cities in the World"
+          cities={cities}
+          populationTotal={popsum}
+          areaTotal={areasum}
+          densityTotal={denssum}
+          citiesCount={count}
+        />
       </div>
-    </section>
+    </main>
   );
 }

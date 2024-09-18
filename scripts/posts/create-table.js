@@ -10,7 +10,7 @@ export async function CreatePostsTable() {
                 title VARCHAR(255) NOT NULL UNIQUE,
                 content TEXT NOT NULL UNIQUE,
                 created_at TIMESTAMP NOT NULL DEFAULT
-              CURRENT_TIMESTAMP,
+                CURRENT_TIMESTAMP,
               );
       `;
     const res = await db.query(CREATE_POSTS_TABLE);
